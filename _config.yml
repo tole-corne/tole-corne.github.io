@@ -1,17 +1,19 @@
-title: "Michael Shoemaker — Data Engineering"
-description: "Production-like data engineering builds, explained clearly."
-baseurl: ""
-url: ""
+title: "Rachid Abou Djamal Hamadou — Data Science & AI"
+description: "Portfolio showcasing projects in data science, AI, cloud, and analytics."
+baseurl: "/rachidaboudjamalhamadou"
+url: "https://tole-corne.github.io"
 markdown: kramdown
 theme: null
 plugins: []
+
 defaults:
-  - scope: { path: "" }
+  - scope:
+      path: ""
     values:
       layout: default
-author: "Michael Shoemaker"
-github_username: "MichaelShoemaker"
-youtube_channel: "@dataslinger6379"
-medium_username: "dataslinger"
+
+author: "Rachid Abou Djamal Hamadou"
+github_username: "tole-corne"
+
 exclude:
   - "README.md"
