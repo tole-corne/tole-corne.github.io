@@ -37,19 +37,18 @@ title: "Home"
 }
 </style>
 
-
 <section id="about" class="section">
 <div class="about-container">
 
-<img src="{{ '/assets/images/rachid.png' | relative_url }}"
-     alt="Rachid Hamadou"
+<img src="{{ '/assets/images/image (1).png' | relative_url }}"
+     alt="Rachid Abou Djamal Hamadou"
      class="profile-pic">
 
 <div class="about-text">
 
 <h1>Hello World! I'm Rachid Abou Djamal Hamadou</h1>
 
-<p>Data Science & AI Enthusiast | Cloud Technologies | Student</p>
+<p>Data Science & AI Student | Cloud & Data Technologies</p>
 
 <p>
 Curious about data, artificial intelligence and modern technologies,
@@ -81,7 +80,6 @@ Python · SQL · Data Analysis · Cloud Computing · Machine Learning
 </div>
 </div>
 </section>
-
 
 <section id="projects" class="section">
 
@@ -130,7 +128,7 @@ All repos →
 <div class="card-body">
 
 <h3 class="card-title">
-<a href="{{ item.link }}" target="_blank">
+<a href="{{ item.link }}" target="_blank" rel="noopener">
 {{ item.title }}
 </a>
 </h3>
@@ -155,7 +153,8 @@ Preview
 
 <a class="btn"
    href="{{ item.link }}"
-   target="_blank">
+   target="_blank"
+   rel="noopener">
 Open
 </a>
 
@@ -176,45 +175,37 @@ Open
 
 </section>
 
-
 <script>
 (function () {
 
 function init(btn) {
+  var targetSel = btn.getAttribute('data-target');
+  var track = document.querySelector(targetSel);
+  if (!track) return;
 
-var targetSel = btn.getAttribute('data-target');
-var track = document.querySelector(targetSel);
-if (!track) return;
+  var step = Math.max(300, Math.floor(track.clientWidth * 0.9));
 
-var step = Math.max(300, Math.floor(track.clientWidth * 0.9));
+  btn.addEventListener('click', function () {
+    track.scrollBy({
+      left: btn.classList.contains('left') ? -step : step,
+      behavior: 'smooth'
+    });
+  });
 
-btn.addEventListener('click', function () {
+  function update() {
+    var max = track.scrollWidth - track.clientWidth - 1;
+    var x = track.scrollLeft;
 
-track.scrollBy({
-left: btn.classList.contains('left') ? -step : step,
-behavior: 'smooth'
-});
+    var leftBtn = track.parentElement.querySelector('.scroll-btn.left');
+    var rightBtn = track.parentElement.querySelector('.scroll-btn.right');
 
-});
+    if (leftBtn) leftBtn.disabled = x <= 0;
+    if (rightBtn) rightBtn.disabled = x >= max;
+  }
 
-function update() {
-
-var max = track.scrollWidth - track.clientWidth - 1;
-var x = track.scrollLeft;
-
-var leftBtn = track.parentElement.querySelector('.scroll-btn.left');
-var rightBtn = track.parentElement.querySelector('.scroll-btn.right');
-
-if (leftBtn) leftBtn.disabled = x <= 0;
-if (rightBtn) rightBtn.disabled = x >= max;
-
-}
-
-track.addEventListener('scroll', update, { passive: true });
-window.addEventListener('resize', update);
-
-update();
-
+  track.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 }
 
 document.querySelectorAll('.scroll-btn').forEach(init);
